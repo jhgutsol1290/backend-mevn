@@ -5,6 +5,9 @@ import path from 'path';
 
 const app = express();
 
+// DB
+import './db'
+
 // Middleware
 app.use(morgan('tiny'));
 app.use(cors());
@@ -13,9 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use('/api', require('./routes/notas'))
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
